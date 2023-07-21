@@ -1,0 +1,5 @@
+package br.com.login.model;
+
+public class ValidarSenha {
+
+}

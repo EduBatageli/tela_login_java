@@ -1,0 +1,86 @@
+package br.com.telaLogin;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class Tela {
+
+	private JFrame frame;
+	private JTextField textFieldUsuario;
+	private JTextField textFieldSenha;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tela window = new Tela();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Tela() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 800, 641);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblTextoLogin = new JLabel("Login");
+		lblTextoLogin.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 40));
+		lblTextoLogin.setBounds(353, 11, 103, 55);
+		frame.getContentPane().add(lblTextoLogin);
+		
+		JLabel lblNewLabel = new JLabel("Usuario:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(95, 183, 123, 44);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblSenha.setBounds(95, 301, 123, 44);
+		frame.getContentPane().add(lblSenha);
+		
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textFieldUsuario.setBounds(224, 183, 378, 44);
+		frame.getContentPane().add(textFieldUsuario);
+		textFieldUsuario.setColumns(10);
+		
+		textFieldSenha = new JTextField();
+		textFieldSenha.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textFieldSenha.setColumns(10);
+		textFieldSenha.setBounds(224, 301, 378, 44);
+		frame.getContentPane().add(textFieldSenha);
+		
+		JButton BotaoCadastrar = new JButton("Cadastrar");
+		BotaoCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		BotaoCadastrar.setBounds(124, 458, 168, 55);
+		frame.getContentPane().add(BotaoCadastrar);
+		
+		JButton BotaoLogin = new JButton("Login");
+		BotaoLogin.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		BotaoLogin.setBounds(520, 458, 168, 55);
+		frame.getContentPane().add(BotaoLogin);
+	}
+}

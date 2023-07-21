@@ -1,0 +1,11 @@
+package br.com.login.model;
+
+public class testew {
+
+	public static void main(String[] args) {
+		ValidarSenha Vsenha = new ValidarSenha();
+		
+		Vsenha.setSenha("Ncc-1701");
+	}
+
+}

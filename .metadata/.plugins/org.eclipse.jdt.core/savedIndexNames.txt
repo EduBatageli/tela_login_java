@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\edumb\OneDrive\Projetos\Java\TelaLogin\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+2889068059.index
+3577895282.index

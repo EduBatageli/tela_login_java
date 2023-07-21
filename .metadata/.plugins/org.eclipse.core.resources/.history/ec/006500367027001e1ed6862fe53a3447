@@ -1,0 +1,30 @@
+package br.com.login.model;
+
+import javax.swing.JOptionPane;
+
+public class ValidarSenha {
+
+	String senha;
+	String caracteresEspeciais = "!@#$%^&*()-_=+[{]};:'\",<.>/?";
+	boolean temErro = false;
+
+	public boolean getSenha() {
+
+		for (char c : caracteresEspeciais.toCharArray()) {
+			if (senha.contains(String.valueOf(c)) && senha.length() >= 8) {
+				JOptionPane.showMessageDialog(null, "senha validada com sucesso");
+				return true;
+			}else {
+				JOptionPane.showMessageDialog(null, "A senha deve conter no minimo: \n1 caracter especial "
+						+ "\n8 digitos \n1 Letra maiuscula \n1 letra minuscula");
+			}
+		}
+
+		return temErro;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+}

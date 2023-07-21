@@ -1,0 +1,103 @@
+package br.com.login.DAO;
+
+import java.sql.DriverManager;
+
+import javax.swing.JOptionPane;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+import br.com.login.factory.FactoryConnection;
+import br.com.login.model.InfoLogin;
+import br.com.login.model.ValidarSenha;
+
+public class comandosBanco {
+
+	public void cadastrar(InfoLogin credenciais) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ValidarSenha validarSenha = new ValidarSenha();
+
+		String insert = "insert into cadastro_usuario(usuario, senha) values(?,?)";
+		try {
+
+			conn = FactoryConnection.createConnectionToMySQL();
+
+			pstm = (PreparedStatement) conn.prepareStatement(insert);
+
+			pstm.setString(1, credenciais.getUsuario());
+			
+			validarSenha.setSenha(credenciais.getSenha());
+			
+			if(validarSenha.validarSenha() == true) {
+				JOptionPane.showMessageDialog(null, "A senha deve conter no mínimo: \n1 caracter especial "
+						+ "\n8 dígitos \n1 letra maiúscula \n1 letra minúscula");
+			}else {
+				pstm.setString(2, credenciais.getSenha());
+				JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+			}
+			
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+
+			// finalizando o cursor
+			try {
+				if (pstm != null) {
+					pstm.close();
+				} else if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	
+	 public boolean autenticarUsuario(String nomeUsuario, String senha) {
+		 
+		 	Connection conn = null;
+			PreparedStatement pstm = null;
+	        String sql = "SELECT nome_usuario, senha FROM usuarios WHERE nome_usuario = ?";
+	             
+	        try {
+
+				conn = FactoryConnection.createConnectionToMySQL();
+
+				pstm = (PreparedStatement) conn.prepareStatement(insert);
+
+				pstm.setString(1, credenciais.getUsuario());
+				
+				validarSenha.setSenha(credenciais.getSenha());
+				
+				if(validarSenha.validarSenha() == true) {
+					JOptionPane.showMessageDialog(null, "A senha deve conter no mínimo: \n1 caracter especial "
+							+ "\n8 dígitos \n1 letra maiúscula \n1 letra minúscula");
+				}else {
+					pstm.setString(2, credenciais.getSenha());
+					JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+				}
+				
+				pstm.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			} finally {
+
+				// finalizando o cursor
+				try {
+					if (pstm != null) {
+						pstm.close();
+					} else if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+	
+	 }
+}

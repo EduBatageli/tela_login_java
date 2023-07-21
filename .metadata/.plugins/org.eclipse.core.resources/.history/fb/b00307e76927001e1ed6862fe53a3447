@@ -1,0 +1,47 @@
+package br.com.login.DAO;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+import br.com.login.factory.FactoryConnection;
+import br.com.login.model.InfoLogin;
+
+public class comandosBanco {
+
+	public void cadastrar(String user, String password) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		InfoLogin info = new InfoLogin();
+
+		String insert = "insert into cadastro_clientes(usuario, senha) values(?,?)";
+		try {
+			// tentando realizar conexao com o banco
+			conn = FactoryConnection.createConnectionToMySQL();
+			// adicionando string no cursor para executar no mysql
+			pstm = (PreparedStatement) conn.prepareStatement(insert);
+			// guardando valor no sql
+			pstm.setString(1, info.getUsuario());
+			pstm.setString(2, info.getSenha());
+
+			// executando
+
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+
+			// finalizando o cursor
+			try {
+				if (pstm != null) {
+					pstm.close();
+				} else if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+}
